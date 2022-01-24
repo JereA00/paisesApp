@@ -14,8 +14,7 @@ import { Country } from '../../interfaces/pais.interfaces';
 })
 export class VerPaisComponent implements OnInit {
 
-  paisSelect!: Country;
-  tipo : any;
+  pais!: Country;
 
   constructor(
     private activatedRoute : ActivatedRoute,
@@ -25,24 +24,12 @@ export class VerPaisComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.activatedRoute.params.pipe(
-      switchMap( ({id}) => this.paisService.getPaisPorCapital(id)),
-      tap( console.log )
-    )
-    .subscribe( pais => this.paisSelect = pais);
-
-    // this.activatedRoute.params
-    // .subscribe( ({id}) => {
-
-    //    this.paisService.getPaisPorCapital(id)
-    //    .subscribe(pais => {
-    //      //this.paisSelect = pais;
-    //      console.log(pais);
-    //      this.paisSelect = pais;
-    //    }); 
-
-    // })   
-    
+    this.activatedRoute.params
+      .pipe(
+        switchMap( ({ id }) => this.paisService.getPaisPorAlpha( id )  ),
+        tap( console.log )
+      )
+      .subscribe( pais => this.pais = pais );
   }
 
 }

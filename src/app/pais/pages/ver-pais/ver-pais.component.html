@@ -1,12 +1,16 @@
-<div class="alert alert-info"
-    *ngIf="!paisSelect; else divPais">
+<div *ngIf="!pais; else divPais"  
+    class="alert alert-info">
     Espere por favor...
 </div>
 
+
+
 <ng-template #divPais>
+
     <div class="row">
-        <div class="col-12" *ngIf="paisSelect !== undefined">
-            <h1>País: {{paisSelect.name.common}}</h1>
+        <div class="col-12">
+            <h1>País: <small>{{ pais.name }}</small></h1>
         </div>
     </div>
+    
 </ng-template>
