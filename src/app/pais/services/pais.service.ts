@@ -25,4 +25,9 @@ export class PaisService {
     const url = `${ this.apiUrl }/alpha/${ id }`;
     return this.http.get<Country>( url );
   }
+
+  getRegion(region: string): Observable<Country[]>{
+    const url = `${ this.apiUrl }/region/${region}?fields=name,capital,alpha2code,flag,population`;
+    return this.http.get<Country[]>(url);
+  }
 }
